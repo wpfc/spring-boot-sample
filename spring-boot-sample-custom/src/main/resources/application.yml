@@ -1,0 +1,21 @@
+server:
+   port: 8000
+   context-path: /wpfc
+my:
+  uuid: ${random.uuid}
+
+#default dateSource: org.apache.tomcat.jdbc.pool.DataSource
+spring: 
+   datasource: 
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/boot
+      username: root
+      password: 123456
+      
+#log
+logging: 
+   level: 
+      org: 
+        apache.ibatis: debug
+        springframework.web: debug
+      cn.edu.ntu: debug
