@@ -16,6 +16,7 @@ public class DemoTest {
 	public void testFirst(){
 		Object obj = BeanUtils.getBean("dataSource");
 		System.out.println(obj.getClass().getName());
+		
 	}
 	
 }
