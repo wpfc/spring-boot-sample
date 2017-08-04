@@ -1,6 +1,8 @@
 server:
    port: 8000
    context-path: /wpfc
+   tomcat.uri-encoding: UTF-8
+   
 my:
   uuid: ${random.uuid}
 
@@ -11,6 +13,11 @@ spring:
       url: jdbc:mysql://127.0.0.1:3306/boot
       username: root
       password: 123456
+   http: 
+      encoding: 
+          force: true
+          charset: UTF-8
+          enabled: true
       
 #log
 logging: 
@@ -19,3 +26,4 @@ logging:
         apache.ibatis: debug
         springframework.web: debug
       cn.edu.ntu: debug
+   charset: utf-8

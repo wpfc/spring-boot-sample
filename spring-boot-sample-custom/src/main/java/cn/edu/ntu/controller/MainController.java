@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.edu.ntu.utils.MyException;
+
 @RestController
 public class MainController {
 
@@ -12,6 +14,9 @@ public class MainController {
 	
 	@RequestMapping("/main")
 	public String sayHello(){
+		if(true){
+			throw new MyException("fsfdsfs");
+		}
 		return "say " + UUID + " to the world!";
 	}
 	

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.edu.ntu.entity.User;
 
+
 @RestController
 public class MainController {
 
@@ -18,6 +19,9 @@ public class MainController {
 		user.setUserId(1L);
 		user.setUserName("hello");
 		user.setAge(23);
+		if(true){
+			throw new RuntimeException("abc");
+		}
 		return user;
 	}
 	
