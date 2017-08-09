@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib
+ xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+ web-jsptaglibrary_2_0.xsd" verson="2.0">
+  
+  <tlib-version>1.0.1</tlib-version>
+  <jsp-version>2.0</jsp-version>
+  <short-name>data to string</short-name>
+  <!-- 
+  		uri对应于 <%@ taglib prefix="wpfc" uri="http://www.wpfc.club/tag"%>
+        uri具体是什么无所谓，匹配<%@ taglib >的uri就可以
+   -->
+  <uri>http://www.wpfc.club/tag</uri>
+  <tag>
+    <name>d2s</name>
+    <tag-class>cn.edu.ntu.tag.DateToString</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+		<name>value</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+  </tag>
+  
+</taglib>

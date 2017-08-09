@@ -21,10 +21,10 @@ public class Application implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		JobUtils obj = BeanUtils.getBean("jobUtils");
-		obj.addJob(new TaskExecutor(), "0/20 * * * * ?");
-		
-		test();
+//		JobUtils obj = BeanUtils.getBean("jobUtils");
+//		obj.addJob(new TaskExecutor(), "0/20 * * * * ?");
+//		
+//		test();
 	}
 	
 	@Scheduled(fixedRate=10000)

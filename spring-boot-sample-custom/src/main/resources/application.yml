@@ -1,6 +1,6 @@
 server:
    port: 8000
-   context-path: /wpfc
+   #context-path: /wpfc
    tomcat.uri-encoding: UTF-8
    
 my:
