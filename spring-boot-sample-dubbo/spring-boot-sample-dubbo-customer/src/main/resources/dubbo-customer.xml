@@ -14,6 +14,6 @@
     <dubbo:registry address="N/A" /> 
 
     <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-    <dubbo:reference id="userService" interface="cn.edu.ntu.dubbo.api.UserService" url="dubbo://127.0.0.1:20880" />
+    <dubbo:reference id="userService" interface="cn.edu.ntu.dubbo.api.UserService" url="dubbo://127.0.0.1:20880" timeout="1200000"/>
 
 </beans>
