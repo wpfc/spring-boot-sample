@@ -16,6 +16,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
+  	<dependency>
+  		<groupId>cn.edu.ntu</groupId>
+	    <artifactId>spring-boot-sample-dubbo-model</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

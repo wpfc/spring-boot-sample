@@ -28,5 +28,6 @@
   	<module>spring-boot-sample-dubbo-api</module>
     <module>spring-boot-sample-dubbo-provider</module>
     <module>spring-boot-sample-dubbo-customer</module>
+    <module>spring-boot-sample-dubbo-model</module>
   </modules>
 </project>
