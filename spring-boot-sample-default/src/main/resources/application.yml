@@ -27,6 +27,8 @@ spring:
 mybatis:
    typeAliasesPackage: cn.edu.ntu.entity
    mapper-locations: classpath:mappers/*.xml
+   # 加载全局的配置文件
+   configLocation: classpath:mybatis-config.xml
 
 #log
 logging: 

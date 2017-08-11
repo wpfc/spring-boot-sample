@@ -116,7 +116,7 @@ $(function() {
          $.ajax({
              url: "${root}/login",
              type: "post",
-             data: { employeeNo: $UserName.val(), password: md5($Password.val()), randomCode: $code.val() },
+             data: { userName: $UserName.val(), password: md5($Password.val()), randomCode: $code.val() },
              success: function (data) {
             		 layer.msg('登录成功，正在为您跳转到管理页面', { icon: 16, shade: [0.5, '#393D49'] });
 
@@ -126,7 +126,7 @@ $(function() {
                      else {
                          Util.SetCookie("SKW.UserName", "", 2000);
                      }
-                     window.location.href = "${root}/";
+                     window.location.href = "${root}/getUserInfoById";
                  
              },
              complete: function () {

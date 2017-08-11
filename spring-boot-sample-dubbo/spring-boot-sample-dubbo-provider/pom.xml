@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.edu.ntu</groupId>
+    <artifactId>spring-boot-sample-dubbo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>cn.edu.ntu</groupId>
+  <artifactId>spring-boot-sample-dubbo-provider</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>spring-boot-sample-dubbo-provider Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+	  <com.alibaba.dubbo.version>2.5.3</com.alibaba.dubbo.version>  
+      <org.apache.zookeeper.version>3.4.6</org.apache.zookeeper.version>  
+      <com.github.sgroschupf.zkclient.version>0.1</com.github.sgroschupf.zkclient.version> 
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    
+    <!-- 引入该jar包会自动创建数据源 -->
+<!--     <dependency>  
+        <groupId>org.mybatis.spring.boot</groupId>  
+        <artifactId>mybatis-spring-boot-starter</artifactId>  
+        <version>1.1.1</version>  
+    </dependency>
+ -->    
+ 
+    <!-- dubbo -->  
+    <dependency>  
+        <groupId>com.alibaba</groupId>  
+        <artifactId>dubbo</artifactId>  
+        <exclusions>  
+            <exclusion>  
+                <groupId>org.springframework</groupId>  
+                <artifactId>spring</artifactId>  
+            </exclusion>  
+        </exclusions>  
+        <version>${com.alibaba.dubbo.version}</version>  
+    </dependency>  
+    <dependency>  
+        <groupId>org.apache.zookeeper</groupId>  
+        <artifactId>zookeeper</artifactId>  
+        <version>${org.apache.zookeeper.version}</version>  
+    </dependency>  
+    <dependency>  
+        <groupId>com.github.sgroschupf</groupId>  
+        <artifactId>zkclient</artifactId>  
+        <version>${com.github.sgroschupf.zkclient.version}</version>  
+    </dependency>
+    
+    <dependency>
+    	<groupId>cn.edu.ntu</groupId>
+	    <artifactId>spring-boot-sample-dubbo-api</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    
+  </dependencies>
+  <build>
+    <finalName>spring-boot-sample-dubbo-provider</finalName>
+  </build>
+</project>
