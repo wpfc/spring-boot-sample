@@ -26,7 +26,7 @@ public class ShiroConfig {
      * 3、部分过滤器可指定参数，如perms，roles
      *
      */
-	@Bean
+	//@Bean
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		

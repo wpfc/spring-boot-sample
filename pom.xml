@@ -20,6 +20,7 @@
     <module>spring-boot-sample-default</module>
     <module>spring-boot-sample-custom</module>
     <module>spring-boot-sample-dubbo</module>
+    <module>spring-boot-sample-websocket</module>
   </modules>
   
 </project>
