@@ -6,6 +6,7 @@ import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.servlet.ErrorPageRegistrar;
 import org.springframework.boot.web.servlet.ErrorPageRegistry;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration        
 //@EnableWebMvc
+//@ComponentScan(basePackages="cn.edu.ntu") µÈ¼ÛÓÚ <beans><context:component-scan base-package="cn.edu.ntu"/></beans>
 public class MvcConfig extends WebMvcConfigurerAdapter  {
 
 	private static final Logger logger = LoggerFactory.getLogger(MvcConfig.class);
