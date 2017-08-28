@@ -6,4 +6,5 @@ public interface UserService {
 
 	User getUserById(Long userId);
 	
+	void testTransactional();
 }

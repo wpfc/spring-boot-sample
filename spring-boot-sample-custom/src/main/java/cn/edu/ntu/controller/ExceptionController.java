@@ -77,12 +77,12 @@ public class ExceptionController {
         return null;
     }*/
 	
-	@ExceptionHandler(value = Exception.class)
+	/*@ExceptionHandler(value = Exception.class)
 	public String globalExceptionHandler(HttpServletRequest request, Exception e){
 		request.setAttribute("exception", e);
 		request.setAttribute("url", request.getRequestURI());
 		return "exception";
-	}
+	}*/
 	
 	@ExceptionHandler(value = MyException.class)
 	public String myExceptionHandler(HttpServletRequest request, Exception e){

@@ -14,9 +14,22 @@ public class User {
 		super();
 	}
 
+	public User(Long userId, String userName, Integer age) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.age = age;
+	}
+
 	public User(Long userId, String userName) {
 		super();
 		this.userId = userId;
+		this.userName = userName;
+	}
+	
+	public User(String userName, Integer age) {
+		super();
+		this.age = age;
 		this.userName = userName;
 	}
 

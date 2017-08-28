@@ -10,5 +10,22 @@
 	<select id="getUserById" resultMap="UserMapper" parameterType="java.lang.Long">
 		select user_id, user_name, user_age from user where user_id = #{userId}
 	</select>
+	
+	<insert id="insertUser" parameterType="cn.edu.ntu.entity.User">
+		insert into user(user_name, user_age) values(#{userName}, #{age});
+	</insert>
+	
+	<update id="updateUserById" parameterType="cn.edu.ntu.entity.User">
+		update user 
+		<set>
+			<if test="userName != null and userName != ''">
+				user_name = #{userName},
+			</if>
+			<if test="age != null">
+				age = #{age}
+			</if>
+		</set>
+		where user_id = #{userId}
+	</update>
 
 </mapper>

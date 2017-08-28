@@ -1,13 +1,12 @@
 package cn.edu.ntu.controller;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import cn.edu.ntu.entity.User;
 import cn.edu.ntu.service.UserService;
@@ -27,4 +26,8 @@ public class UserController {
 		return "hello";
 	}
 	
+	@PostMapping("/test")
+	public void testTransaction(){
+		userService.testTransactional();
+	}
 }
