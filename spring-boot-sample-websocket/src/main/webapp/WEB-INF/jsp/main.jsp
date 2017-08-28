@@ -15,7 +15,7 @@
 <button id="disconnect" onclick="disconnect();">断开</button>
 </body>
 <script type="text/javascript">
-var clinet = null;
+var client = null;
 
 function setConnected(connected) {  
     document.getElementById('connect').disabled = connected;  
@@ -29,14 +29,21 @@ function connect(){
 	client.connect({}, function(frame) {  
         setConnected(true);  
         console.log('Connected: ' + frame);  
-        stompClient.subscribe('/topic/greetings', function(greeting){  
+        client.subscribe('/topic/greetings', function(greeting){  
             console.log(JSON.parse(greeting.body).content);  
         });  
-
-        stompClient.subscribe('/topic/marco',function(greeting){  
-        	console.log(JSON.parse(greeting.body).content);   
+		//直接发起一次请求，以"/app"开头
+        client.subscribe('/app/marco',function(greeting){  
+        	console.log(JSON.parse(greeting.body).destination);   
         });  
     });  
+}
+
+function disconnect(){
+	if (client != null) {  
+		client.disconnect();  
+    }  
+    setConnected(false); 
 }
 </script>
 </html>
