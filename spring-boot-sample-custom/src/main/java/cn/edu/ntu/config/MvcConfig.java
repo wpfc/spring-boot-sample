@@ -1,13 +1,17 @@
 package cn.edu.ntu.config;
 
 import java.io.IOException;
+import java.util.EnumSet;
 import java.util.List;
+
+import javax.servlet.DispatcherType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.servlet.ErrorPageRegistrar;
 import org.springframework.boot.web.servlet.ErrorPageRegistry;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +29,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import cn.edu.ntu.filter.UserFilter;
 
 @Configuration        
 //@EnableWebMvc
@@ -102,4 +108,16 @@ public class MvcConfig extends WebMvcConfigurerAdapter  {
 			}
 		};
 	}*/
+	
+	/**
+	 * 添加一个filter拦截器，向MDC对象中加入打印内容
+	 * @return
+	 */
+	@Bean
+	public FilterRegistrationBean myFilter() {
+	    FilterRegistrationBean registration = new FilterRegistrationBean();
+	    registration.setFilter(new UserFilter());
+	    registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
+	    return registration;
+	}
 }

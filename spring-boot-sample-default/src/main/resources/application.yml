@@ -1,33 +1,35 @@
 server:
    port: 8000
-   context-path: /wpfc
 my:
   uuid: ${random.uuid}
 
 #default dateSource: org.apache.tomcat.jdbc.pool.DataSource
 spring: 
    datasource: 
-      #ÅäÖÃÄ¬ÈÏÊı¾İÔ´µÄÀàĞÍ£¬¾Í¿ÉÒÔ½«Êı¾İ¿âÁ¬½Ó³Ø±ä³Édruid  ¿ÉÍ¨¹ıDemoTestµÄ²âÊÔ·½·¨²é¿´
+      #é…ç½®é»˜è®¤æ•°æ®æºçš„ç±»å‹ï¼Œå°±å¯ä»¥å°†æ•°æ®åº“è¿æ¥æ± å˜æˆdruid  å¯é€šè¿‡DemoTestçš„æµ‹è¯•æ–¹æ³•æŸ¥çœ‹
       type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://127.0.0.1:3306/boot
       username: root
       password: 123456
-      
+# AOP
+#   aop: 
+#        auto: true
+#        proxy-target-class: true
    #Spring MVC view prefix/suffix 
    mvc: 
      view: 
         prefix: /WEB-INF/jsp/
         suffix: .jsp
+#   springboot é»˜è®¤é…ç½®çš„ /** æ˜ å°„åˆ° /static ï¼ˆæˆ–/publicã€/resourcesã€/META-INF/resourcesï¼‰
+#   /static/**ä¼šæ˜ å°„åˆ°classpath:/static/
         static-path-pattern: /static/**
-   resources:
-     static-locations: /static/  
        
-##Ä¬ÈÏÒÔÏÂÅäÖÃÉúĞ§,ÎŞ´ËÅäÖÃÔòÍ¨¹ıÆô¶¯ÀàÖĞMapperScanÉ¨Ãèxml
+##é»˜è®¤ä»¥ä¸‹é…ç½®ç”Ÿæ•ˆ,æ— æ­¤é…ç½®åˆ™é€šè¿‡å¯åŠ¨ç±»ä¸­MapperScanæ‰«æxml
 mybatis:
    typeAliasesPackage: cn.edu.ntu.entity
    mapper-locations: classpath:mappers/*.xml
-   # ¼ÓÔØÈ«¾ÖµÄÅäÖÃÎÄ¼ş
+   # åŠ è½½å…¨å±€çš„é…ç½®æ–‡ä»¶
    configLocation: classpath:mybatis-config.xml
 
 #log

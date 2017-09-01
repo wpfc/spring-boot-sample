@@ -36,13 +36,13 @@ public class LoginController {
 	public void random(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("image/jpeg");// ÉèÖÃÏàÓ¦ÀàĞÍ,¸æËßä¯ÀÀÆ÷Êä³öµÄÄÚÈİÎªÍ¼Æ¬
-		response.setHeader("Pragma", "No-cache");// ÉèÖÃÏìÓ¦Í·ĞÅÏ¢£¬¸æËßä¯ÀÀÆ÷²»Òª»º´æ´ËÄÚÈİ
+		response.setContentType("image/jpeg");// è®¾ç½®ç›¸åº”ç±»å‹,å‘Šè¯‰æµè§ˆå™¨è¾“å‡ºçš„å†…å®¹ä¸ºå›¾ç‰‡
+		response.setHeader("Pragma", "No-cache");// è®¾ç½®å“åº”å¤´ä¿¡æ¯ï¼Œå‘Šè¯‰æµè§ˆå™¨ä¸è¦ç¼“å­˜æ­¤å†…å®¹
 		response.setHeader("Cache-Control", "no-cache");
 		response.setDateHeader("Expire", 0);
 		RandomCode randomCode = new RandomCode();
 		try {
-			randomCode.getRandcode(request, response);// Êä³öÍ¼Æ¬·½·¨
+			randomCode.getRandcode(request, response);//è¾“å‡ºå›¾ç‰‡æ–¹æ³•
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
