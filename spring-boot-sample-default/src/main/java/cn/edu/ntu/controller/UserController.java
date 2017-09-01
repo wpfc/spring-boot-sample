@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import cn.edu.ntu.annotation.Log;
 import cn.edu.ntu.entity.User;
 import cn.edu.ntu.service.UserService;
 
@@ -15,6 +16,7 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping("/getUserInfoById")
+	@Log("helloworld")
 	public String getUserInfoById(Model model, Long userId){
 		User user = userService.getUserById(userId);
 		model.addAttribute("userinfo", user);

@@ -4,7 +4,11 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
+
+import cn.edu.ntu.annotation.Log;
 
 /**
  * 
@@ -14,16 +18,15 @@ import org.springframework.util.StopWatch;
  * 
  */
 @Aspect
-//@Component
+@Component
 public class LogAspect {
 
-	@Pointcut("execution(* cn.edu.ntu.controller.*.*(..)) && @annotation(Log)")
-	public void pointcut(){
-		
-	}
+	@Pointcut("execution(* cn.edu.ntu.controller.*.*(..)) && @annotation(log)")
+	public void pointcut(Log log){}
 	
-	@Around("pointcut()")
-    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+	
+	@Around("pointcut(log)")
+    public Object around(ProceedingJoinPoint pjp, Log log) throws Throwable {
         StopWatch sw = new StopWatch(getClass().getSimpleName());
         try {
             sw.start(pjp.getSignature().getName());

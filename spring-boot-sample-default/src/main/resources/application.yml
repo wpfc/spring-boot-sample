@@ -13,9 +13,9 @@ spring:
       username: root
       password: 123456
 # AOP
-#   aop: 
-#        auto: true
-#        proxy-target-class: true
+   aop: 
+        auto: true
+        proxy-target-class: true
    #Spring MVC view prefix/suffix 
    mvc: 
      view: 
