@@ -6,5 +6,7 @@ public interface UserService {
 
 	User getUserById(Long userId);
 	
+	User getUserByName(String userName);
+	
 	void testTransactional();
 }

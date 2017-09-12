@@ -1,12 +1,21 @@
 package cn.edu.ntu.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
 
+import cn.edu.ntu.utils.HttpResult;
+import cn.edu.ntu.utils.JsonUtils;
 import cn.edu.ntu.utils.MyException;
 
 /**
@@ -77,12 +86,26 @@ public class ExceptionController {
         return null;
     }*/
 	
-	/*@ExceptionHandler(value = Exception.class)
-	public String globalExceptionHandler(HttpServletRequest request, Exception e){
-		request.setAttribute("exception", e);
-		request.setAttribute("url", request.getRequestURI());
-		return "exception";
-	}*/
+	@ExceptionHandler(value = Exception.class)
+	public Object globalExceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception e){
+		if (!(request.getHeader("accept").indexOf("application/json") > -1 || (request
+                .getHeader("X-Requested-With") != null && request.getHeader(
+                "X-Requested-With").indexOf("XMLHttpRequest") > -1))) {
+			request.setAttribute("exception", e);
+			request.setAttribute("url", request.getRequestURI());
+			handlerException(e);
+			return "exception";
+		}else{
+			try {
+				response.setContentType("UTF-8");
+				PrintWriter out = response.getWriter();
+				out.write(HttpResult.err().msg(e.getMessage()).build().toString());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return null;
+	}
 	
 	@ExceptionHandler(value = MyException.class)
 	public String myExceptionHandler(HttpServletRequest request, Exception e){

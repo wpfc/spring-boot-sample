@@ -8,41 +8,44 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import cn.edu.ntu.entity.Result;
 import cn.edu.ntu.entity.User;
+import cn.edu.ntu.utils.Cons;
+import cn.edu.ntu.utils.HttpResult;
 import cn.edu.ntu.utils.RandomCode;
 
 
 @Controller
-public class LoginController {
+public class LoginController extends BaseController {
 
 	@GetMapping("/login")
 	public String login(){
 		return "login";
 	}
 	
-	@PostMapping("/login")
-	@ResponseBody
-	public Result login(User user){
-		Result result = new Result();
-		try{
-			Subject subject = SecurityUtils.getSubject();
-			UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassword());
-			subject.login(token);
-			result.setCode("200");
-		}catch(Exception ex){
-			result.setCode("999");
-			result.setMsg(ex.getMessage());
-			
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<HttpResult> login1(String randomCode, String userName, String password) throws Exception {
+		Session session = SecurityUtils.getSubject().getSession();
+		logger.info("sessionId : {}", session.getId());
+		String random = session.getAttribute(RandomCode.RANDOMCODEKEY) != null ? session
+				.getAttribute(RandomCode.RANDOMCODEKEY).toString() : null;
+		if(!random.equals(randomCode)){
+			ok(HttpResult.err().msg("验证码不正确！").build());
 		}
-		return result;
+		UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+		Subject subject = SecurityUtils.getSubject();
+		subject.login(token);
+		User user = (User) subject.getPrincipal();
+		// setting permissions.
+		session.setAttribute(Cons.SESSION_INFO, user);
+		return ok(HttpResult.ok().build());
 	}
 	
 	@RequestMapping(value = "/random")

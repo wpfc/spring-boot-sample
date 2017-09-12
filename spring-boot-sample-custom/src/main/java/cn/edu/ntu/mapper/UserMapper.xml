@@ -5,6 +5,7 @@
 	    <id column="user_id" property="userId" jdbcType="DECIMAL" />
 	    <result column="user_name" property="userName" jdbcType="VARCHAR" />
 	    <result column="user_age" property="age" jdbcType="DECIMAL" />
+	    <result column="password" property="password" jdbcType="DECIMAL" />
 	</resultMap>
   
 	<select id="getUserById" resultMap="UserMapper" parameterType="java.lang.Long">
@@ -27,5 +28,9 @@
 		</set>
 		where user_id = #{userId}
 	</update>
+	
+	<select id="getUserByName" resultMap="UserMapper" parameterType="java.lang.String">
+		select * from user where user_name = #{userName}
+	</select>
 
 </mapper>

@@ -37,9 +37,9 @@ public class MyHandler extends TextWebSocketHandler {
 	
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		//RequestMessage reqMsg = JsonUtils.parseString2Object(message.getPayload(), RequestMessage.class);
+		RequestMessage reqMsg = JsonUtils.parseString2Object(message.getPayload(), RequestMessage.class);
 		//session.sendMessage(new TextMessage(message.getPayload()));
-		broadcast(USERINFO_LIST, message.getPayload());
+		
 	}
 	
 	@Override
@@ -61,6 +61,17 @@ public class MyHandler extends TextWebSocketHandler {
 						e.printStackTrace();
 					}
 				}
+			}
+		}
+	}
+	
+	private void sendToUser(String someone, CharSequence message){
+		WebSocketSession session =  WEBSOCKET_SESSION_MAP.get(someone);
+		if(session !=null && session.isOpen() && !StringUtils.isEmpty(message)){
+			try {
+				session.sendMessage(new TextMessage(message));
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}

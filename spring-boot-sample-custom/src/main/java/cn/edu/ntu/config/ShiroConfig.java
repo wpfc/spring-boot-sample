@@ -2,10 +2,12 @@ package cn.edu.ntu.config;
 
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import cn.edu.ntu.shiro.MyRealm;
+import cn.edu.ntu.shiro.AuthRealm;
+import cn.edu.ntu.shiro.CredentialsMatcher;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +28,8 @@ public class ShiroConfig {
      * 3、部分过滤器可指定参数，如perms，roles
      *
      */
-	//@Bean
-	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
+	@Bean(name="shiroFilter")
+	public ShiroFilterFactoryBean shiroFilter(@Qualifier("securityManager") SecurityManager securityManager){
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		
 		// 必须设置 SecurityManager
@@ -36,7 +38,7 @@ public class ShiroConfig {
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/index");
+        shiroFilterFactoryBean.setSuccessUrl("/");
         // 未授权界面;
         shiroFilterFactoryBean.setUnauthorizedUrl("/404");
 		
@@ -47,31 +49,27 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/static/**", "anon");
         filterChainDefinitionMap.put("/random", "anon");
         filterChainDefinitionMap.put("/login", "anon");
-        
-        filterChainDefinitionMap.put("/getUserInfoById", "perms[admin:edit]");
-        
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         
 		return shiroFilterFactoryBean;
 	}
 	
-	/**
-	 * 创建安全管理器
-	 * @param realm
-	 * @return
-	 */
-	@Bean
-	public SecurityManager customSecurityManager(Realm realm){
-		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-		securityManager.setRealm(realm);
-		return securityManager;
+    //配置核心安全事务管理器
+    @Bean(name="securityManager")
+    public DefaultWebSecurityManager securityManager(AuthRealm authRealm) {
+        DefaultWebSecurityManager dwsm = new DefaultWebSecurityManager();
+        dwsm.setRealm(authRealm);
+//        dwsm.setSessionManager(sessionManager);
+//      <!-- 用户授权/认证信息Cache, 采用EhCache 缓存 --> 
+//        dwsm.setCacheManager(getEhCacheManager());
+        return dwsm;
+    }
+	
+    @Bean(name="authRealm")
+	public AuthRealm authRealm(){
+		AuthRealm authRealm = new AuthRealm();
+		authRealm.setCredentialsMatcher(new CredentialsMatcher());
+		return authRealm;
 	}
-	
-	/*@Bean
-	public Realm customRealm(MyRealm myRealm){
-		Realm realm = new MyRealm();
-		return  realm;
-	}*/
-	
 }
