@@ -29,18 +29,17 @@ public class UserFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		//从session中获取用户对象，赋值给MDC对象
+		//灏嗙敤鎴蜂俊鎭斁鍒版棩蹇椾腑
 		MDC.put(USER_INFO, DEFAULT_USER_INFO);
 		
 		chain.doFilter(request, response);
 		
-		//防止造成OOM  
-		//tomcat默认有个线程连接池  （ThreadLocal）
+		//娓呴櫎鐢ㄦ埛淇℃伅
 		clearUserInfo();
 	}
 
 	private void clearUserInfo() {
-		MDC.clear();
+		MDC.remove(USER_INFO);
 	}
 
 	@Override
