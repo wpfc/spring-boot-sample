@@ -53,6 +53,5 @@ public class LogAspect {
             System.out.println(sw.prettyPrint());
         }
     }
-
-	
 }
+	

@@ -21,6 +21,8 @@
     <module>spring-boot-sample-custom</module>
     <module>spring-boot-sample-dubbo</module>
     <module>spring-boot-sample-websocket</module>
+    <module>spring-boot-sample-mongodb</module>
+    <module>spring-boot-sample-redis</module>
   </modules>
   
 </project>
