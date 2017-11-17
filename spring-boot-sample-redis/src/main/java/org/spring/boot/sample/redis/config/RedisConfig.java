@@ -25,6 +25,9 @@ public class RedisConfig {
 	 * 需要自定义host的连接的方法
 	 * 1.通过全局环境对象 environment 
 	 * 
+	 * 如果需要从特定的文件中读取属性：
+	 *       在配置类中采用@Component的方式注册为组件，
+	 *       然后使用@PropertySource来指定自定义的资源目录
 	 */
 	@Bean
 //	@ConfigurationProperties(prefix="spring.redis")
