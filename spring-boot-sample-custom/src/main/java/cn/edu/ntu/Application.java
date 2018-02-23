@@ -11,7 +11,7 @@ import cn.edu.ntu.utils.BeanUtils;
 import cn.edu.ntu.utils.JobUtils;
 
 @SpringBootApplication
-//×Ô¶¨ÒåÅäÖÃ£ºÉ¨ÃèmapperµÄ½Ó¿ÚÒÔ¼°ÊµÏÖµÄxmlÎÄ¼şËùÔÚµÄ°ü
+//è‡ªå®šä¹‰é…ç½®ï¼šæ‰«æmapperçš„æ¥å£ä»¥åŠå®ç°çš„xmlæ–‡ä»¶æ‰€åœ¨çš„åŒ…
 @MapperScan("cn.edu.ntu.mapper")
 public class Application implements CommandLineRunner{
 	
@@ -29,6 +29,6 @@ public class Application implements CommandLineRunner{
 	
 	@Scheduled(fixedRate=10000)
 	public void test(){
-		System.out.println("³ÌĞòÅÜÀ´ÁË");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	}
 }

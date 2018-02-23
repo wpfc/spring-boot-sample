@@ -6,6 +6,8 @@ server:
 my:
   uuid: ${random.uuid}
 
+#用@ConfigurationProperties是支持“ 松绑定 ”的，我们不必每个字都和配置中的key一致。
+#官网给出了两个例子，e.g. context-path binds to contextPath和e.g. PORT binds to port
 #default dateSource: org.apache.tomcat.jdbc.pool.DataSource
 spring: 
    datasource: 
